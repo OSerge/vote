@@ -33,14 +33,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-
-
-
-
 ROOT_URLCONF = 'vote.urls'
-
-
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -66,6 +59,7 @@ STATIC_ROOT = os.path.join(DATA_DIR, 'static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'vote', 'static'),
+    os.path.join(BASE_DIR, 'vote_app', 'static'),
 )
 SITE_ID = 1
 
@@ -73,7 +67,8 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'vote', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'vote', 'templates'),
+                 os.path.join(BASE_DIR, 'vote_app', 'templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -138,7 +133,8 @@ INSTALLED_APPS = (
     'djangocms_snippet',
     'djangocms_googlemap',
     'djangocms_video',
-    'vote'
+    'vote',
+    'vote_app',
 )
 
 LANGUAGES = (
@@ -197,3 +193,5 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters'
 )
+
+LOGIN_REDIRECT_URL = '/'

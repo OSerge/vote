@@ -9,10 +9,14 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.static import serve
+from django.contrib.auth import views as auth_views
 
 admin.autodiscover()
 
 urlpatterns = [
+    url(r'^ru/login/$', auth_views.login, {'template_name': 'registration/login.html'}, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^', include('vote_app.urls')),
     url(r'^sitemap\.xml$', sitemap,
         {'sitemaps': {'cmspages': CMSSitemap}}),
 ]
@@ -21,6 +25,8 @@ urlpatterns += i18n_patterns(
     url(r'^admin/', include(admin.site.urls)),  # NOQA
     url(r'^', include('cms.urls')),
 )
+
+
 
 # This is only needed when using runserver.
 if settings.DEBUG:
