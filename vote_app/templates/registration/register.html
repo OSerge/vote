@@ -2,7 +2,7 @@
 <html>
 <head>
     <link href="../../static/css/register.css" rel="stylesheet" type="text/css">
-    <title>Registration</title>
+    <title>Регистрация</title>
 </head>
 <body>
    <div class="login-page">
@@ -10,8 +10,8 @@
     <form method="POST" class="register-form">
         {% csrf_token %} {{ form.as_p }}
 
-      <button>create</button>
-      <p class="message">Already registered? <a href="/login/">Sign In</a></p>
+      <button>Создать</button>
+      <p class="message">Уже зарегистрирован? <a href="/login/">Войти</a></p>
     </form>
   </div>
 </div>
